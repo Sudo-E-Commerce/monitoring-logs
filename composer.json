@@ -1,0 +1,30 @@
+{
+    "name": "sudo/monitoring-logs",
+    "description": "Sudo monitor log package",
+    "type": "library",
+    "license": "MIT",
+    "minimum-stability": "dev",
+    "authors": [
+        {
+            "name": "Bui Phong",
+            "email": "phongtrank55@gmail.com"
+        }
+    ],
+    "require": {
+    },
+    "autoload": {
+        "psr-4": {
+            "Sudo\\MonitoringLog\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Sudo\\MonitoringLog\\Providers\\SudoMonitoringLogServiceProvider"
+            ],
+            "aliases": {
+                "SudoMonitoringLog": "Sudo\\MonitoringLog\\SudoMonitoringLog"
+            }
+        }
+    }
+}
