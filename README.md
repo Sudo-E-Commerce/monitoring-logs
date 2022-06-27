@@ -41,8 +41,9 @@ Các function ghi log được tích hợp sẵn tại class ``SudoMonitoringLog
      * Ghi trạng thái log thành công
      * @param integer $job_item_id       ID job trên hệ thống giám sát
      * @param string  $message           Nội dung cần thông báo
+     * @param string  $title_link        Link khi click vào thông báo
      */
-    SudoMonitoringLog::success($job_item_id, $message)
+    SudoMonitoringLog::success($job_item_id, $message, $title_link)
     ```
 
 2. Ghi log khi job thực hiện xảy ra lỗi:
@@ -52,6 +53,7 @@ Các function ghi log được tích hợp sẵn tại class ``SudoMonitoringLog
      * Ghi trạng thái log lỗi
      * @param integer $job_item_id       ID job trên hệ thống giám sát
      * @param string  $message           Nội dung cần thông báo
+     * @param string  $title_link        Link khi click vào thông báo
      */
-    SudoMonitoringLog::error($job_item_id, $message)
+    SudoMonitoringLog::error($job_item_id, $message, $title_link)
     ```

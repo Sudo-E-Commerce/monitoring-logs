@@ -22,30 +22,33 @@ class SudoMonitoringLog
 
     /**
      * Write success log monitoring
-     * @param integer $job_item_id Job item id
-     * @param string  $message Message in job
+     * @param integer $job_item_id      Job item id
+     * @param string  $message          Message in job
+     * @param string  $title_link       Title link when click notify
      */
-    public static function success($job_item_id, $message){
-        self::writeLog($job_item_id, $message, self::JOB_STATUS_SUCCESS);
+    public static function success($job_item_id, $message, $title_link = ''){
+        self::writeLog($job_item_id, $message, self::JOB_STATUS_SUCCESS, $title_link);
     }
 
     /**
      * Write error log monitoring
-     * @param integer $job_item_id Job item id
-     * @param string  $message Message in job
+     * @param integer $job_item_id      Job item id
+     * @param string  $message          Message in job
+     * @param string  $title_link       Title link when click notify
      */
-    public static function error($job_item_id, $message){
-        self::writeLog($job_item_id, $message, self::JOB_STATUS_FAIL);
+    public static function error($job_item_id, $message, $title_link = ''){
+        self::writeLog($job_item_id, $message, self::JOB_STATUS_FAIL, $title_link);
     }
 
 
     /**
      * Write log API
-     * @param integer $job_item_id Job item id
-     * @param string  $message Message in job
-     * @param integer $status  Job status
+     * @param integer $job_item_id      Job item id
+     * @param string  $message          Message in job
+     * @param integer $status           Job status
+     * @param string  $title_link       Title link when click notify
      */
-    private static function writeLog($job_item_id, $message, $status){
+    private static function writeLog($job_item_id, $message, $status, $title_link = ''){
         try{
             $host = config('SudoMonitoringLog.host');
 
@@ -59,7 +62,8 @@ class SudoMonitoringLog
                     'job_item_id'  => $job_item_id,
                     'message'      => $message,
                     'token'        => $token,
-                    'website'      => config('app.url')
+                    'website'      => config('app.url'),
+                    'title_link'   => $title_link
                 ]
             ]);
             if ($respon->getStatusCode() == 200) {
