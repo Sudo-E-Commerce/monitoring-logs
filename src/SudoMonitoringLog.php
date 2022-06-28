@@ -60,7 +60,7 @@ class SudoMonitoringLog
                 'form_params' => [
                     'job_status'   => $status,
                     'job_item_id'  => $job_item_id,
-                    'message'      => $message,
+                    'message'      => self::formatMessage($message),
                     'token'        => $token,
                     'website'      => config('app.url'),
                     'title_link'   => $title_link
@@ -80,5 +80,20 @@ class SudoMonitoringLog
         }
     }
 
-
+    /**
+     * Format message
+     */
+    private static function formatMessage($message)
+    {
+        if ($message instanceof \Exception) {
+            $message = "```". $message ."```";
+        } else if (is_array($message)) {
+            return var_export($message, true);
+        } elseif ($message instanceof \Jsonable) {
+            return $message->toJson();
+        } elseif ($message instanceof \Arrayable) {
+            return var_export($message->toArray(), true);
+        }
+        return $message;
+    }
 }
